@@ -23,7 +23,7 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Updating Helm chart values...
       - cd ..
-      - sed -i "s|tag: .*|tag: \"$IMAGE_TAG\"|" gitops/charts/webapp/values.yaml
+      - 'sed -i "s|tag: .*|tag: \"$IMAGE_TAG\"|" gitops/charts/webapp/values.yaml'
       - echo Committing changes to Git...
       - git config --global user.email "codebuild@example.com"
       - git config --global user.name "CodeBuild"
