@@ -25,7 +25,7 @@ phases:
       - export REPO_URL=https://git-codecommit.$AWS_DEFAULT_REGION.amazonaws.com/v1/repos/gitops-on-aws
       - git config --global credential.helper '!aws codecommit credential-helper $@'
       - git config --global credential.UseHttpPath true
-      - git clone $REPO_URL temp_repo
+      - git clone -b main $REPO_URL temp_repo
       - cd temp_repo
       - 'sed -i "s|tag: .*|tag: \"$IMAGE_TAG\"|" gitops/charts/webapp/values.yaml'
       - git config --global user.email "codebuild@example.com"
