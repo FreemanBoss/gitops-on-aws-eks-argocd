@@ -65,17 +65,43 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 ### 4. Setup CodeCommit and Push Code
 
-Create a CodeCommit repository named `gitops-on-aws` and push this entire project to it.
+The Terraform configuration has already created the CodeCommit repository `gitops-on-aws`. You just need to push the code.
 
-### 5. Setup CodePipeline
+(If you haven't already pushed the code as part of the setup script):
 
-Manually create a CodePipeline in the AWS Console (or automate via Terraform if extended) that:
--   Source: CodeCommit (`gitops-on-aws` repo, `main` branch).
--   Build: CodeBuild using `pipeline/buildspec.yml`.
-    -   **Environment Variables**: `AWS_ACCOUNT_ID`, `IMAGE_REPO_NAME` (from Terraform output).
-    -   **Permissions**: Ensure CodeBuild role has ECR push and CodeCommit write permissions.
+```bash
+git remote add origin https://git-codecommit.us-west-2.amazonaws.com/v1/repos/gitops-on-aws
+git push -u origin main
+```
 
-### 6. Deploy Application via ArgoCD
+### 5. Connect ArgoCD to CodeCommit
+
+Since CodeCommit repositories are private, you must provide credentials to ArgoCD.
+
+1.  **Generate Git Credentials**:
+    *   Go to the AWS IAM Console -> Users -> Your User -> Security Credentials.
+    *   Scroll to "HTTPS Git credentials for AWS CodeCommit" and click "Generate credentials".
+    *   Download or copy the Username and Password.
+
+2.  **Add Repository to ArgoCD**:
+    *   Access the ArgoCD UI (see step 3).
+    *   Go to **Settings** -> **Repositories** -> **Connect Repo**.
+    *   **Method**: HTTPS
+    *   **Type**: Helm
+    *   **Project**: default
+    *   **Repository URL**: `https://git-codecommit.us-west-2.amazonaws.com/v1/repos/gitops-on-aws`
+    *   **Username**: (Your generated username)
+    *   **Password**: (Your generated password)
+    *   Click **Connect**.
+    *   *Note*: You also need to add the same repo as type "Git" so ArgoCD can monitor the Application manifest if you were storing it there, but here we are pointing to the Helm chart path. Add it as type **Git** as well with the same credentials.
+
+### 6. Setup CodePipeline
+
+The pipeline is already provisioned via Terraform! It triggers automatically on commits to the `main` branch.
+
+You can view the pipeline status in the [AWS CodePipeline Console](https://us-west-2.console.aws.amazon.com/codesuite/codepipeline/pipelines/gitops-demo-terraform-pipeline/view).
+
+### 7. Deploy Application via ArgoCD
 
 Apply the ArgoCD Application manifest:
 

@@ -4,3 +4,6 @@ terraform.tfstate
 terraform.tfstate.backup
 *.tfvars
 .DS_Store
+argocd_key
+argocd_key.pub
+gitops/argocd-repo-secret.yaml

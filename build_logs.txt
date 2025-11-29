@@ -1,0 +1,244 @@
+[Container] 2025/11/28 09:30:39.017362 Running on CodeBuild On-demand
+	[Container] 2025/11/28 09:30:39.017378 Waiting for agent ping
+	[Container] 2025/11/28 09:30:39.118870 Waiting for DOWNLOAD_SOURCE
+	[Container] 2025/11/28 09:30:40.551918 Phase is DOWNLOAD_SOURCE
+	[Container] 2025/11/28 09:30:40.553378 CODEBUILD_SRC_DIR=/codebuild/output/src3305896903/src
+	[Container] 2025/11/28 09:30:40.553976 YAML location is /codebuild/output/src3305896903/src/pipeline/buildspec.yml
+	[Container] 2025/11/28 09:30:40.556840 Setting HTTP client timeout to higher timeout for S3 source
+	[Container] 2025/11/28 09:30:40.556954 Processing environment variables
+	[Container] 2025/11/28 09:30:40.741299 No runtime version selected in buildspec.
+	[Container] 2025/11/28 09:30:40.761989 Moving to directory /codebuild/output/src3305896903/src
+	[Container] 2025/11/28 09:30:40.762012 Cache is not defined in the buildspec
+	[Container] 2025/11/28 09:30:40.793320 Skip cache due to: no paths specified to be cached
+	[Container] 2025/11/28 09:30:40.793532 Registering with agent
+	[Container] 2025/11/28 09:30:40.823116 Phases found in YAML: 3
+	[Container] 2025/11/28 09:30:40.823195  POST_BUILD: 16 commands
+	[Container] 2025/11/28 09:30:40.823203  PRE_BUILD: 5 commands
+	[Container] 2025/11/28 09:30:40.823207  BUILD: 5 commands
+	[Container] 2025/11/28 09:30:40.823524 Phase complete: DOWNLOAD_SOURCE State: SUCCEEDED
+	[Container] 2025/11/28 09:30:40.823536 Phase context status code:  Message: 
+	[Container] 2025/11/28 09:30:40.920672 Entering phase INSTALL
+	[Container] 2025/11/28 09:30:40.953302 Phase complete: INSTALL State: SUCCEEDED
+	[Container] 2025/11/28 09:30:40.953321 Phase context status code:  Message: 
+	[Container] 2025/11/28 09:30:40.981711 Entering phase PRE_BUILD
+	[Container] 2025/11/28 09:30:41.014337 Running command echo Logging in to Amazon ECR...
+	Logging in to Amazon ECR...
+	
+	[Container] 2025/11/28 09:30:41.020474 Running command aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+	WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+	Configure a credential helper to remove this warning. See
+	https://docs.docker.com/engine/reference/commandline/login/#credential-stores
+	
+	Login Succeeded
+	
+	[Container] 2025/11/28 09:30:55.447578 Running command REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME
+	
+	[Container] 2025/11/28 09:30:55.454427 Running command COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+	
+	[Container] 2025/11/28 09:30:55.464295 Running command IMAGE_TAG=${COMMIT_HASH:=latest}
+	
+	[Container] 2025/11/28 09:30:55.470469 Phase complete: PRE_BUILD State: SUCCEEDED
+	[Container] 2025/11/28 09:30:55.470484 Phase context status code:  Message: 
+	[Container] 2025/11/28 09:30:55.506734 Entering phase BUILD
+	[Container] 2025/11/28 09:30:55.508031 Running command echo Build started on `date`
+	Build started on Fri Nov 28 09:30:55 UTC 2025
+	
+	[Container] 2025/11/28 09:30:55.514875 Running command echo Building the Docker image...
+	Building the Docker image...
+	
+	[Container] 2025/11/28 09:30:55.520640 Running command cd app
+	
+	[Container] 2025/11/28 09:30:55.526233 Running command docker build -t $REPOSITORY_URI:latest .
+	#0 building with "default" instance using docker driver
+	
+	#1 [internal] load build definition from Dockerfile
+	#1 transferring dockerfile: 263B done
+	#1 DONE 0.0s
+	
+	#2 [internal] load metadata for public.ecr.aws/docker/library/python:3.9-slim
+	#2 DONE 0.5s
+	
+	#3 [internal] load .dockerignore
+	#3 transferring context: 2B done
+	#3 DONE 0.0s
+	
+	#4 [internal] load build context
+	#4 transferring context: 416B done
+	#4 DONE 0.0s
+	
+	#5 [1/5] FROM public.ecr.aws/docker/library/python:3.9-slim@sha256:2d97f6910b16bd338d3060f261f53f144965f755599aab1acda1e13cf1731b1b
+	#5 resolve public.ecr.aws/docker/library/python:3.9-slim@sha256:2d97f6910b16bd338d3060f261f53f144965f755599aab1acda1e13cf1731b1b 0.0s done
+	#5 sha256:fc74430849022d13b0d44b8969a953f842f59c6e9d1a0c2c83d710affa286c08 0B / 13.88MB 0.1s
+	#5 sha256:2d97f6910b16bd338d3060f261f53f144965f755599aab1acda1e13cf1731b1b 10.36kB / 10.36kB done
+	#5 sha256:dad5b29e3506c35e0fd222736f4d4ef25d21b219acdd73f7bb41d59996ca8e0d 1.74kB / 1.74kB done
+	#5 sha256:085da638e1b8a449514c3fda83ff50a3bffae4418b050cfacd87e5722071f497 5.40kB / 5.40kB done
+	#5 sha256:38513bd7256313495cdd83b3b0915a633cfa475dc2a07072ab2c8d191020ca5d 6.29MB / 29.78MB 0.1s
+	#5 sha256:b3ec39b36ae8c03a3e09854de4ec4aa08381dfed84a9daa075048c2e3df3881d 0B / 1.29MB 0.1s
+	#5 sha256:fc74430849022d13b0d44b8969a953f842f59c6e9d1a0c2c83d710affa286c08 13.88MB / 13.88MB 0.3s
+	#5 sha256:38513bd7256313495cdd83b3b0915a633cfa475dc2a07072ab2c8d191020ca5d 29.78MB / 29.78MB 0.2s done
+	#5 sha256:b3ec39b36ae8c03a3e09854de4ec4aa08381dfed84a9daa075048c2e3df3881d 1.29MB / 1.29MB 0.2s done
+	#5 sha256:ea56f685404adf81680322f152d2cfec62115b30dda481c2c450078315beb508 251B / 251B 0.3s done
+	#5 sha256:fc74430849022d13b0d44b8969a953f842f59c6e9d1a0c2c83d710affa286c08 13.88MB / 13.88MB 0.3s done
+	#5 extracting sha256:38513bd7256313495cdd83b3b0915a633cfa475dc2a07072ab2c8d191020ca5d 0.1s
+	#5 extracting sha256:38513bd7256313495cdd83b3b0915a633cfa475dc2a07072ab2c8d191020ca5d 1.2s done
+	#5 extracting sha256:b3ec39b36ae8c03a3e09854de4ec4aa08381dfed84a9daa075048c2e3df3881d
+	#5 extracting sha256:b3ec39b36ae8c03a3e09854de4ec4aa08381dfed84a9daa075048c2e3df3881d 0.1s done
+	#5 extracting sha256:fc74430849022d13b0d44b8969a953f842f59c6e9d1a0c2c83d710affa286c08
+	#5 extracting sha256:fc74430849022d13b0d44b8969a953f842f59c6e9d1a0c2c83d710affa286c08 0.7s done
+	#5 extracting sha256:ea56f685404adf81680322f152d2cfec62115b30dda481c2c450078315beb508
+	#5 extracting sha256:ea56f685404adf81680322f152d2cfec62115b30dda481c2c450078315beb508 done
+	#5 DONE 2.6s
+	
+	#6 [2/5] WORKDIR /app
+	#6 DONE 0.5s
+	
+	#7 [3/5] COPY requirements.txt .
+	#7 DONE 0.1s
+	
+	#8 [4/5] RUN pip install --no-cache-dir -r requirements.txt
+	#8 2.376 Collecting flask==3.0.0
+	#8 2.409   Downloading flask-3.0.0-py3-none-any.whl (99 kB)
+	#8 2.420      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 99.7/99.7 kB 10.4 MB/s eta 0:00:00
+	#8 2.460 Collecting gunicorn==21.2.0
+	#8 2.469   Downloading gunicorn-21.2.0-py3-none-any.whl (80 kB)
+	#8 2.472      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 80.2/80.2 kB 278.3 MB/s eta 0:00:00
+	#8 2.545 Collecting Werkzeug>=3.0.0
+	#8 2.555   Downloading werkzeug-3.1.3-py3-none-any.whl (224 kB)
+	#8 2.566      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 224.5/224.5 kB 34.6 MB/s eta 0:00:00
+	#8 2.610 Collecting click>=8.1.3
+	#8 2.619   Downloading click-8.1.8-py3-none-any.whl (98 kB)
+	#8 2.622      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98.2/98.2 kB 255.2 MB/s eta 0:00:00
+	#8 2.712 Collecting importlib-metadata>=3.6.0
+	#8 2.721   Downloading importlib_metadata-8.7.0-py3-none-any.whl (27 kB)
+	#8 2.746 Collecting blinker>=1.6.2
+	#8 2.754   Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+	#8 2.779 Collecting itsdangerous>=2.1.2
+	#8 2.787   Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+	#8 2.820 Collecting Jinja2>=3.1.2
+	#8 2.829   Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+	#8 2.832      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 134.9/134.9 kB 291.3 MB/s eta 0:00:00
+	#8 2.880 Collecting packaging
+	#8 2.888   Downloading packaging-25.0-py3-none-any.whl (66 kB)
+	#8 2.891      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 66.5/66.5 kB 227.7 MB/s eta 0:00:00
+	#8 2.958 Collecting zipp>=3.20
+	#8 2.967   Downloading zipp-3.23.0-py3-none-any.whl (10 kB)
+	#8 3.175 Collecting MarkupSafe>=2.0
+	#8 3.185   Downloading markupsafe-3.0.3-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (20 kB)
+	#8 3.405 Installing collected packages: zipp, packaging, MarkupSafe, itsdangerous, click, blinker, Werkzeug, Jinja2, importlib-metadata, gunicorn, flask
+	#8 3.945 Successfully installed Jinja2-3.1.6 MarkupSafe-3.0.3 Werkzeug-3.1.3 blinker-1.9.0 click-8.1.8 flask-3.0.0 gunicorn-21.2.0 importlib-metadata-8.7.0 itsdangerous-2.2.0 packaging-25.0 zipp-3.23.0
+	#8 3.946 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+	#8 4.052 
+	#8 4.052 [notice] A new release of pip is available: 23.0.1 -> 25.3
+	#8 4.052 [notice] To update, run: pip install --upgrade pip
+	#8 DONE 4.3s
+	
+	#9 [5/5] COPY app.py .
+	#9 DONE 0.1s
+	
+	#10 exporting to image
+	#10 exporting layers
+	#10 exporting layers 0.2s done
+	#10 writing image sha256:46d53c4088a954a710e886e44082cc3e476cf005c223ae8ef7beae1ad6b27936 done
+	#10 naming to 078646182495.dkr.ecr.us-west-2.amazonaws.com/gitops-webapp:latest done
+	#10 DONE 0.2s
+	
+	[Container] 2025/11/28 09:31:04.049837 Running command docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+	
+	[Container] 2025/11/28 09:31:04.074576 Phase complete: BUILD State: SUCCEEDED
+	[Container] 2025/11/28 09:31:04.074598 Phase context status code:  Message: 
+	[Container] 2025/11/28 09:31:04.104461 Entering phase POST_BUILD
+	[Container] 2025/11/28 09:31:04.105611 Running command echo Build completed on `date`
+	Build completed on Fri Nov 28 09:31:04 UTC 2025
+	
+	[Container] 2025/11/28 09:31:04.113675 Running command echo Pushing the Docker image...
+	Pushing the Docker image...
+	
+	[Container] 2025/11/28 09:31:04.122821 Running command docker push $REPOSITORY_URI:latest
+	The push refers to repository [078646182495.dkr.ecr.us-west-2.amazonaws.com/gitops-webapp]
+	33e33ab81e19: Preparing
+	92c20faa1050: Preparing
+	ee493888a6e6: Preparing
+	890f67c88394: Preparing
+	c8f6b54339a8: Preparing
+	298992e09a03: Preparing
+	4f237755fbae: Preparing
+	d7c97cb6f1fe: Preparing
+	298992e09a03: Waiting
+	4f237755fbae: Waiting
+	d7c97cb6f1fe: Waiting
+	c8f6b54339a8: Layer already exists
+	298992e09a03: Layer already exists
+	4f237755fbae: Layer already exists
+	890f67c88394: Pushed
+	33e33ab81e19: Pushed
+	ee493888a6e6: Pushed
+	92c20faa1050: Pushed
+	d7c97cb6f1fe: Pushed
+	latest: digest: sha256:45b7ac8004a11d2c544a6a4576e188ebe7cc54949421ad690052a9972148ac5f size: 1991
+	
+	[Container] 2025/11/28 09:31:09.075523 Running command docker push $REPOSITORY_URI:$IMAGE_TAG
+	The push refers to repository [078646182495.dkr.ecr.us-west-2.amazonaws.com/gitops-webapp]
+	33e33ab81e19: Preparing
+	92c20faa1050: Preparing
+	ee493888a6e6: Preparing
+	890f67c88394: Preparing
+	c8f6b54339a8: Preparing
+	298992e09a03: Preparing
+	4f237755fbae: Preparing
+	d7c97cb6f1fe: Preparing
+	298992e09a03: Waiting
+	4f237755fbae: Waiting
+	d7c97cb6f1fe: Waiting
+	92c20faa1050: Layer already exists
+	33e33ab81e19: Layer already exists
+	c8f6b54339a8: Layer already exists
+	ee493888a6e6: Layer already exists
+	890f67c88394: Layer already exists
+	298992e09a03: Layer already exists
+	4f237755fbae: Layer already exists
+	d7c97cb6f1fe: Layer already exists
+	0280309: digest: sha256:45b7ac8004a11d2c544a6a4576e188ebe7cc54949421ad690052a9972148ac5f size: 1991
+	
+	[Container] 2025/11/28 09:31:09.311049 Running command echo Updating Helm chart values...
+	Updating Helm chart values...
+	
+	[Container] 2025/11/28 09:31:09.316997 Running command export REPO_URL=https://git-codecommit.$AWS_DEFAULT_REGION.amazonaws.com/v1/repos/gitops-on-aws
+	
+	[Container] 2025/11/28 09:31:09.322693 Running command git config --global credential.helper '!aws codecommit credential-helper $@'
+	
+	[Container] 2025/11/28 09:31:09.330195 Running command git config --global credential.UseHttpPath true
+	
+	[Container] 2025/11/28 09:31:09.336624 Running command git clone $REPO_URL temp_repo
+	Cloning into 'temp_repo'...
+	hint: Using 'master' as the name for the initial branch. This default branch name
+	hint: is subject to change. To configure the initial branch name to use in all
+	hint: of your new repositories, which will suppress this warning, call:
+	hint:
+	hint: 	git config --global init.defaultBranch <name>
+	hint:
+	hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+	hint: 'development'. The just-created branch can be renamed via this command:
+	hint:
+	hint: 	git branch -m <name>
+	remote: remote: Counting objects: 0        remote: Counting objects: 56        remote: Counting objects: 56        remote: Counting objects: 56, done.        
+	
+	[Container] 2025/11/28 09:31:15.825853 Running command cd temp_repo
+	
+	[Container] 2025/11/28 09:31:15.831753 Running command sed -i "s|tag: .*|tag: \"$IMAGE_TAG\"|" gitops/charts/webapp/values.yaml
+	sed: can't read gitops/charts/webapp/values.yaml: No such file or directory
+	
+	[Container] 2025/11/28 09:31:15.907014 Command did not exit successfully sed -i "s|tag: .*|tag: \"$IMAGE_TAG\"|" gitops/charts/webapp/values.yaml exit status 2
+	[Container] 2025/11/28 09:31:15.911381 Phase complete: POST_BUILD State: FAILED
+	[Container] 2025/11/28 09:31:15.911398 Phase context status code: COMMAND_EXECUTION_ERROR Message: Error while executing command: sed -i "s|tag: .*|tag: \"$IMAGE_TAG\"|" gitops/charts/webapp/values.yaml. Reason: exit status 2
+	[Container] 2025/11/28 09:31:15.953689 Set report auto-discover timeout to 5 seconds
+	[Container] 2025/11/28 09:31:15.953777 Expanding base directory path:  .
+	[Container] 2025/11/28 09:31:15.955384 Assembling file list
+	[Container] 2025/11/28 09:31:15.955394 Expanding .
+	[Container] 2025/11/28 09:31:15.957015 Expanding file paths for base directory .
+	[Container] 2025/11/28 09:31:15.957029 Assembling file list
+	[Container] 2025/11/28 09:31:15.957032 Expanding **/*
+	[Container] 2025/11/28 09:31:15.959624 No matching auto-discover report paths found
+	[Container] 2025/11/28 09:31:15.959640 Report auto-discover file discovery took 0.005952 seconds
+	[Container] 2025/11/28 09:31:15.959650 Phase complete: UPLOAD_ARTIFACTS State: SUCCEEDED
+	[Container] 2025/11/28 09:31:15.959657 Phase context status code:  Message: 
+

@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://git-codecommit.us-west-2.amazonaws.com/v1/repos/gitops-on-aws'
-    targetRevision: HEAD
+    repoURL: 'ssh://APKARET5NQJPTAFKLI5S@git-codecommit.us-west-2.amazonaws.com/v1/repos/gitops-on-aws'
+    targetRevision: main
     path: gitops/charts/webapp
   destination:
     server: 'https://kubernetes.default.svc'
